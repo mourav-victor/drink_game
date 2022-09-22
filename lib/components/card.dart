@@ -14,11 +14,15 @@ class Cards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(title, style: TextStyle(fontSize: 36)),
-        Text(legend, style: TextStyle(fontSize: 24)),
-      ],
+    return Container(
+      margin: EdgeInsets.all(15),
+      child: Column(
+        children: [
+          Text(title, style: TextStyle(fontSize: 32), textAlign: TextAlign.center,),
+          SizedBox(height: 20,),
+          Text(legend, style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+        ],
+      ),
     );
 
   }

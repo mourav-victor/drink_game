@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(widget.title),
         backgroundColor: Colors.black,
       ),
@@ -48,13 +49,18 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Spacer(),
-            const Cards(title: 'Ancião', legend: 'O mais velho bebe!',),
+            Observer(
+              builder: (context) {
+                return widget.controller.currentCard;
+              }
+            ),
+            //const Cards(title: 'Ancião', legend: 'O mais velho bebe!',),
             Spacer(),
             Observer(
               builder: (context) {
                 return Text(
-                  '${widget.controller.counter}/20',
-                  style: Theme.of(context).textTheme.headline4,
+                  'rodadas: ${widget.controller.counter}',
+                  style: const TextStyle(fontSize: 22)
                 );
               }
             ),
@@ -64,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           widget.controller.increment();
+          widget.controller.changeCard();
         },
         tooltip: 'Increment',
         backgroundColor: Colors.black,

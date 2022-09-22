@@ -9,6 +9,22 @@ part of 'controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$Controller on ControllerBase, Store {
+  late final _$currentCardAtom =
+      Atom(name: 'ControllerBase.currentCard', context: context);
+
+  @override
+  Cards get currentCard {
+    _$currentCardAtom.reportRead();
+    return super.currentCard;
+  }
+
+  @override
+  set currentCard(Cards value) {
+    _$currentCardAtom.reportWrite(value, super.currentCard, () {
+      super.currentCard = value;
+    });
+  }
+
   late final _$counterAtom =
       Atom(name: 'ControllerBase.counter', context: context);
 
@@ -40,8 +56,20 @@ mixin _$Controller on ControllerBase, Store {
   }
 
   @override
+  dynamic changeCard() {
+    final _$actionInfo = _$ControllerBaseActionController.startAction(
+        name: 'ControllerBase.changeCard');
+    try {
+      return super.changeCard();
+    } finally {
+      _$ControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+currentCard: ${currentCard},
 counter: ${counter}
     ''';
   }
