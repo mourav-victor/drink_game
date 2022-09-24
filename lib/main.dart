@@ -1,8 +1,7 @@
+import 'package:drink_game/pages/classic_game.dart';
+import 'package:drink_game/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
-import 'components/card.dart';
-import 'controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,12 +18,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Drink Game'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomePage(),
+        '/classic_game': (context) => ClassicGame(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+/*class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
@@ -78,4 +81,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}
+}*/
